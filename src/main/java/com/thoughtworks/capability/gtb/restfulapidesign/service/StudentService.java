@@ -19,12 +19,20 @@ public class StudentService {
         studentRepository.insert(student);
     }
 
-    public List<Student> getStudents(){
-        return studentRepository.getStudents();
+    public List<Student> getStudentBySomething(String gender){
+        if (gender == null ){
+            return studentRepository.getStudents();
+        } else{
+            return studentRepository.getStudentsByGender(gender);
+        }
     }
 
     public Student getStudentById(Integer Id){
         return studentRepository.getStudentById(Id);
+    }
+
+    public List<Student> getStudentsByGender(String gender){
+        return studentRepository.getStudentsByGender(gender);
     }
 
     public void deleteStudentById(Integer Id){

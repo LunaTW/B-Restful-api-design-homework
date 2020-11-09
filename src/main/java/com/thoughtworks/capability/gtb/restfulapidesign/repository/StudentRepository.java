@@ -19,6 +19,18 @@ public class StudentRepository {
         return studentMap.get(Id);
     }
 
+    public List<Student> getStudentsByGender(String gender){
+        return studentMap.values().stream()
+                .filter(student -> student.getGender().equals(gender))
+                .collect(Collectors.toList());
+    }
+
+    public List<Student> getStudentStudentsByName(String name){
+                return studentMap.values().stream().filter(
+                student -> Objects.equals(student.getGender(),name)
+        ).collect(Collectors.toList());
+    }
+
     public void insert(Student student){
         studentMap.put(student.getId(),student);
     }

@@ -21,8 +21,8 @@ public class StudentController {
     }
 
     @GetMapping
-    public List<Student> getStudents(){
-        return studentService.getStudents();
+    public List<Student> getStudentsBySomething(@RequestParam(required = false) String gender){
+        return studentService.getStudentBySomething(gender);
     }
 
     @GetMapping(value = "/{id}")
