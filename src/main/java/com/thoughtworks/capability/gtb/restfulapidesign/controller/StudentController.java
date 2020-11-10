@@ -1,6 +1,7 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.controller;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.model.Student;
+import com.thoughtworks.capability.gtb.restfulapidesign.service.Exception.StudentNotExist;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class StudentController {
     }
 
     @GetMapping(value = "/{id}")
-    public Student getStudentById(@PathVariable Integer id){
+    public Student getStudentById(@PathVariable Integer id) throws StudentNotExist {
         return studentService.getStudentById(id);
     }
 

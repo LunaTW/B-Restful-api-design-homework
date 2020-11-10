@@ -2,6 +2,7 @@ package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.model.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.repository.StudentRepository;
+import com.thoughtworks.capability.gtb.restfulapidesign.service.Exception.StudentNotExist;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,8 +28,13 @@ public class StudentService {
         }
     }
 
-    public Student getStudentById(Integer Id){
-        return studentRepository.getStudentById(Id);
+    public Student getStudentById(Integer Id) throws StudentNotExist {
+//        return studentRepository.getStudentById(Id).orElseThrow(() -> new StudentNotExist("This user is not exist"));
+        if (studentRepository.getStudentById(Id)==null){
+            throw new StudentNotExist("This user is not exist");
+        }else{
+            return studentRepository.getStudentById(Id);
+        }
     }
 
     public List<Student> getStudentsByGender(String gender){

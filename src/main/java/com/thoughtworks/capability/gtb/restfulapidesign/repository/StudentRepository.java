@@ -1,6 +1,7 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.repository;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.model.Student;
+import com.thoughtworks.capability.gtb.restfulapidesign.service.Exception.StudentNotExist;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -15,7 +16,7 @@ public class StudentRepository {
         // return new ArrayList<>(studentMap.values());
     }
 
-    public Student getStudentById(Integer Id){
+    public Student getStudentById(Integer Id) throws StudentNotExist {
         return studentMap.get(Id);
     }
 
