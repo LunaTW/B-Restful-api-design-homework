@@ -1,5 +1,6 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.repository;
 
+import com.thoughtworks.capability.gtb.restfulapidesign.model.Group;
 import com.thoughtworks.capability.gtb.restfulapidesign.model.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.Exception.StudentNotExist;
 import org.springframework.stereotype.Repository;
@@ -36,7 +37,6 @@ public class StudentRepository {
         studentMap.put(student.getId(),student);
     }
 
-    // To ask why? remove(id)
     public void deleteStudentById(Integer id){
         studentMap.remove(id);
     }
@@ -47,4 +47,5 @@ public class StudentRepository {
         studentToUpdate.setName(student.getName());
         studentToUpdate.setNote(student.getNote());
     }
+
 }

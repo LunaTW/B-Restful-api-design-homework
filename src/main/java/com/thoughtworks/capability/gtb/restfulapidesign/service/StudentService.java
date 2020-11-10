@@ -10,13 +10,13 @@ import java.util.List;
 @Service
 public class StudentService {
 
-    private final StudentRepository studentRepository;
+    private final StudentRepository studentRepository = new StudentRepository();
 
-    public StudentService(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
-    }
+//    public StudentService(StudentRepository studentRepository) {
+//        this.studentRepository = studentRepository;
+//    }
 
-    public void createStudent(Student student){
+    public void createStudent(Student student) {
         studentRepository.insert(student);
     }
 
@@ -35,10 +35,6 @@ public class StudentService {
         }else{
             return studentRepository.getStudentById(Id);
         }
-    }
-
-    public List<Student> getStudentsByGender(String gender){
-        return studentRepository.getStudentsByGender(gender);
     }
 
     public void deleteStudentById(Integer Id){
