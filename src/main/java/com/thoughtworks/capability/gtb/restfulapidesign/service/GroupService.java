@@ -12,13 +12,13 @@ import java.util.List;
 
 @Service
 public class GroupService {
-    private final GroupRepository groupRepository;
-    private final StudentRepository studentRepository = new StudentRepository();
+    private final GroupRepository groupRepository = new GroupRepository();
+//    private final StudentRepository studentRepository = new StudentRepository();
     private final StudentService studentService = new StudentService();
 
-    public GroupService(GroupRepository groupRepository) {
-        this.groupRepository = groupRepository;
-    }
+//    public GroupService(GroupRepository groupRepository) {
+//        this.groupRepository = groupRepository;
+//    }
 
     public List<Group> randomlyAllocate(){
         List<Group> groupList = groupRepository.getGroupList();
@@ -26,10 +26,13 @@ public class GroupService {
             group -> group.setStudentList(new ArrayList<>())
         );
 //        List<Student> studentList = studentRepository.getStudents();
-        List<Student> studentList = studentService.getStudentBySomething(null);
+//        List<Student> studentList = studentService.getStudentBySomething(null);
+        List<Student> studentList = studentService.getStudents();
+
         System.out.println("+++++++++++++++++++");
         System.out.println(studentList);
         System.out.println("+++++++++++++++++++");
+
         Collections.shuffle(studentList);
         for (int i=1;i<=studentList.size();i++){
             groupList.get(i%groupList.size()).getStudentList().add(studentList.get(i));
@@ -46,5 +49,9 @@ public class GroupService {
 
     public void updateGroup(Group group){
         groupRepository.updateGroup(group);
+    }
+
+    public List<Group> getGroupList() {
+        return groupRepository.getGroupList();
     }
 }

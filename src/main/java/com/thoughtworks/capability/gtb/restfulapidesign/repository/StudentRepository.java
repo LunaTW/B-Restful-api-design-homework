@@ -19,6 +19,9 @@ public class StudentRepository {
 
     public Student getStudentById(Integer Id) throws StudentNotExist {
         return studentMap.get(Id);
+//        return studentMap.values().stream()
+//                .filter(student -> student.getId().equals(Id))
+//                .findFirst();
     }
 
     public List<Student> getStudentsByGender(String gender){

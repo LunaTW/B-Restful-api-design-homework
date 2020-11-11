@@ -5,13 +5,14 @@ import com.thoughtworks.capability.gtb.restfulapidesign.repository.StudentReposi
 import com.thoughtworks.capability.gtb.restfulapidesign.service.Exception.StudentNotExist;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class StudentService {
 
     private final StudentRepository studentRepository = new StudentRepository();
-
+    private final List<Student> studentList = new ArrayList<>();
 //    public StudentService(StudentRepository studentRepository) {
 //        this.studentRepository = studentRepository;
 //    }
@@ -28,8 +29,13 @@ public class StudentService {
         }
     }
 
+    public List<Student> getStudents(){
+        return studentRepository.getStudents();
+    }
+
     public Student getStudentById(Integer Id) throws StudentNotExist {
-//        return studentRepository.getStudentById(Id).orElseThrow(() -> new StudentNotExist("This user is not exist"));
+        // Another option to throw exception
+        // return studentRepository.getStudentById(Id).orElseThrow(() -> new StudentNotExist("This user is not exist"));
         if (studentRepository.getStudentById(Id)==null){
             throw new StudentNotExist("This user is not exist");
         }else{
