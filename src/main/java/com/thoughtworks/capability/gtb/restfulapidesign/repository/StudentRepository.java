@@ -14,26 +14,16 @@ public class StudentRepository {
 
     public List<Student> getStudents(){
         return studentMap.values().stream().collect(Collectors.toList());
-        // return new ArrayList<>(studentMap.values());
     }
 
-    public Student getStudentById(Integer Id) throws StudentNotExist {
+    public Student getStudentById(Integer Id) {
         return studentMap.get(Id);
-//        return studentMap.values().stream()
-//                .filter(student -> student.getId().equals(Id))
-//                .findFirst();
     }
 
     public List<Student> getStudentsByGender(String gender){
         return studentMap.values().stream()
                 .filter(student -> student.getGender().equals(gender))
                 .collect(Collectors.toList());
-    }
-
-    public List<Student> getStudentStudentsByName(String name){
-                return studentMap.values().stream().filter(
-                student -> Objects.equals(student.getGender(),name)
-        ).collect(Collectors.toList());
     }
 
     public void insert(Student student){

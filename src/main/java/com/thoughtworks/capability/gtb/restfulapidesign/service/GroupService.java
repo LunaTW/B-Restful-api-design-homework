@@ -12,29 +12,23 @@ import java.util.List;
 
 @Service
 public class GroupService {
-    private final GroupRepository groupRepository = new GroupRepository();
-//    private final StudentRepository studentRepository = new StudentRepository();
-    private final StudentService studentService = new StudentService();
+    private final GroupRepository groupRepository;
+    private final StudentRepository studentRepository;
 
-//    public GroupService(GroupRepository groupRepository) {
-//        this.groupRepository = groupRepository;
-//    }
+    public GroupService(GroupRepository groupRepository, StudentRepository studentRepository) {
+        this.groupRepository = groupRepository;
+        this.studentRepository = studentRepository;
+    }
 
     public List<Group> randomlyAllocate(){
         List<Group> groupList = groupRepository.getGroupList();
         groupList.forEach(
             group -> group.setStudentList(new ArrayList<>())
         );
-//        List<Student> studentList = studentRepository.getStudents();
-//        List<Student> studentList = studentService.getStudentBySomething(null);
-        List<Student> studentList = studentService.getStudents();
 
-        System.out.println("+++++++++++++++++++");
-        System.out.println(studentList);
-        System.out.println("+++++++++++++++++++");
-
+        List<Student> studentList = studentRepository.getStudents();
         Collections.shuffle(studentList);
-        for (int i=1;i<=studentList.size();i++){
+        for (int i=0;i<studentList.size();i++){
             groupList.get(i%groupList.size()).getStudentList().add(studentList.get(i));
         }
         for (Group group:groupList){
@@ -51,7 +45,4 @@ public class GroupService {
         groupRepository.updateGroup(group);
     }
 
-    public List<Group> getGroupList() {
-        return groupRepository.getGroupList();
-    }
 }

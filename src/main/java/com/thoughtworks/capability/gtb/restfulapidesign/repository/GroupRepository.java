@@ -1,7 +1,6 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.repository;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.model.Group;
-import com.thoughtworks.capability.gtb.restfulapidesign.model.Student;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -34,7 +33,6 @@ public class GroupRepository {
         groupToUpdate.setName(group.getName());
         groupToUpdate.setNote(group.getNote());
         groupToUpdate.setStudentList(group.getStudentList());
-//        groupList.put(group.getId(), groupToUpdate);
     }
 
 }
